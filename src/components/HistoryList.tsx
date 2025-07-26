@@ -15,9 +15,9 @@ export function HistoryList() {
   };
 
   return (
-    <div>
+    <div className="card">
       <h3>Recent Searches</h3>
-      <ul>
+      <ul className="history-list">
         {searchHistory.map((city, idx) => (
           <li key={`${city}-${idx}`} onClick={() => handleSearch(city)}>
             {city}

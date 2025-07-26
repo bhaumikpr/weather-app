@@ -1,68 +1,260 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light Theme */
+.light {
+  --bg: #f4f4f4;
+  --text: #222;
+  --card-bg: #ffffff;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+  --disabled-bg: #cccccc;
+  --disabled-text: #666666;
+  --error: #c0392b;
+}
+
+/* Dark Theme */
+.dark {
+  --bg: #0f172a;
+  --text: #eeeeee;
+  --card-bg: #1f273a;
+  --button-bg: #3498db;
+  --button-text: #ffffff;
+  --disabled-bg: #444444;
+  --disabled-text: #999999;
+  --error: #e74c3c;
+}
+
+body.light,
+body.dark {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* === Layout === */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.dashboard-header {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.h1 {
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-button {
+.search-section {
+  margin-bottom: 1rem;
+}
+
+.results-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.history-section {
+  margin-top: 1rem;
+}
+
+/* === Cards === */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.slideUp {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* === Search Bar === */
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.search-bar input {
+  height: 44px;
+  padding: 0 0.75rem;
+  font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: 1px solid #ccc;
+  flex: 2;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.search-bar button {
+  height: 44px;
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  flex: 1;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.search-bar button:disabled {
+  background-color: var(--disabled-bg);
+  color: var(--disabled-text);
+  cursor: not-allowed;
+}
+
+.search-bar button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+
+/* === Error Message === */
+/* .error {
+  color: var(--error);
+  font-weight: 600;
+  margin-top: 0.5rem;
+} */
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 4px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* === History List === */
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+
+.history-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+}
+
+.history-list li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* === Outfit Suggestion === */
+.card p {
+  margin-top: 0.5rem;
+}
+
+/* === Theme Toggle === */
+button {
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .results-section {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar input,
+  .search-bar button {
+    width: 100%;
+    margin-top: 0;
+    padding: 0.5rem;
+  }
+
+  .search-bar button {
+    margin-top: 0.5rem;
+    
+  }
+
+  .h1 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+}
+
+
+/* === Loader === */
+.loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  text-align: center;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 6px solid var(--card-bg);
+  border-top: 6px solid var(--button-bg);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -15,9 +15,9 @@ export function OutfitSuggestion() {
     currentWeather?.condition
   );
   return (
-    <>
+    <div className="card">
       <h3>OutfitSuggestion</h3>
       <p>{suggestions}</p>
-    </>
+    </div>
   );
 }

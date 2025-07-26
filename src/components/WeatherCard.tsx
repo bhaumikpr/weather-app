@@ -6,15 +6,19 @@ export function WeatherCard() {
     state: { currentWeather },
   } = useWeather();
 
-  if (!currentWeather) return null;
+  if (!currentWeather) {
+    return <p> Please enter city name</p>;
+  }
 
   return (
-    <>
-      <h3>Weather</h3>
-      {currentWeather.city}
-      {currentWeather.temperature}°C
-      {currentWeather.windSpeed} km/h
-      {currentWeather.humidity}%
-    </>
+    <div className="card slideUp">
+      <h3>{currentWeather.city}</h3>
+      <ul>
+        <li>Tempratute : {currentWeather.temperature}°C</li>
+        <li>Wind Speed : {currentWeather.windSpeed} km/h</li>
+        <li>Humidity : {currentWeather.humidity}% </li>
+        <li>Condition : {currentWeather.condition} </li>
+      </ul>
+    </div>
   );
 }
