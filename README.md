@@ -1,69 +1,122 @@
-# React + TypeScript + Vite
+# 🌦️ Weather-Based Outfit Recommender
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A smart React + TypeScript web app that recommends outfits based on real-time weather data using the OpenWeatherMap API. It features city search with autosuggestions, light/dark themes, and responsive UI — all built with plain CSS (no Tailwind).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 City search with autosuggestion
+- 🌡️ Real-time weather and outfit suggestions
+- 🌓 Light/Dark theme toggle with persistence
+- 📱 Responsive design (mobile-first)
+- 🎨 Smooth animations and interactions
+- 💾 Search history
+- 🔐 Environment variable support via `.env`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- [React 18](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [OpenWeatherMap API](https://openweathermap.org/api)
+- Plain CSS (no framework)
+- Context API (for theme management)
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── SearchBar.tsx
+│   ├── WeatherCard.tsx
+│   ├── OutfitSuggestion.tsx
+│   ├── ThemeToggle.tsx
+│   ├── HistoryList.tsx
+├── utils/
+│   ├── fetchWeather.ts
+│   ├── getOutfitSuggestion.ts
+├── context/
+│   └── ThemeContext.tsx
+├── App.tsx
+└── main.tsx
+└── index.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Setup Instructions
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/weather-outfit-app.git
+cd weather-outfit-app
 ```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env` file in the project root using the example provided:
+
+#### 📄 `.env.example`
+
+```env
+# Rename this to .env and add your API key
+VITE_WEATHER_API_KEY=your_openweathermap_api_key_here
+```
+
+> ✅ **Never commit your `.env` file.** It should be in `.gitignore`.
+
+### 4. Run the Development Server
+
+```bash
+npm run dev
+```
+
+App will be available at: [http://localhost:5173](http://localhost:5173)
+
+
+## 🌍 OpenWeatherMap API
+
+We use the **Current Weather Data** endpoint:
+
+```
+https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric
+```
+
+See: [OpenWeatherMap API Docs](https://openweathermap.org/current)
+
+---
+
+## 🔥 Deployment (Optional)
+
+Deploy to [Vercel](https://vercel.com/) or [Netlify](https://netlify.com/) with the following steps:
+
+- Set `VITE_WEATHER_API_KEY` as an environment variable in dashboard
+- Point to your GitHub repository
+- Done! 🎉
+
+---
+
+## 🤝 Contribution
+
+PRs and suggestions are welcome!
+
+- Fork the repo
+- Create a feature branch
+- Submit a pull request
+
+---
+
+## 📝 License
+
+MIT © [Your Name](https://github.com/your-username)
