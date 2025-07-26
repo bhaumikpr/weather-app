@@ -10,10 +10,7 @@ export function OutfitSuggestion() {
     return null;
   }
 
-  const suggestions = getOutfitSuggestion(
-    currentWeather?.temperature,
-    currentWeather?.condition
-  );
+  const suggestions = getOutfitSuggestion(currentWeather?.temperature);
   return (
     <div className="card">
       <h3>OutfitSuggestion</h3>
