@@ -1,0 +1,1 @@
+export const cityNotFound = 'City not found'
